@@ -4,8 +4,8 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Threading.Tasks;
 using Meetups.Context;
+using Meetups.Repository;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 
 namespace Meetups.Controllers
 {
@@ -13,29 +13,21 @@ namespace Meetups.Controllers
     [Route("api/[controller]")]
     public class MeetupsController: Controller
     {
-        private readonly MeetupsContext _meetupsContextContext;
 
-        public MeetupsController(MeetupsContext meetupsContext)
+        private readonly IEventRepo _eventRepo;
+
+        public MeetupsController(IEventRepo eventRepo)
         {
-            _meetupsContextContext = meetupsContext;
+            _eventRepo = eventRepo;
         }
 
         [HttpGet]
-        public bool CheckConnetion()
+        public async Task<IActionResult> GetEvents()
         {
-            try
-            {
-                _meetupsContextContext.Database.OpenConnection();
-                _meetupsContextContext.Database.CanConnect();
-             return true;
+            var eventsAsync = await _eventRepo.GetEventsAsync();
 
-            }
-            catch (SqlException e)
-            {
-                Console.WriteLine(e);
-                throw;
-            }
-
+            return Ok(eventsAsync);
         }
+
     }
 }
