@@ -11,11 +11,11 @@ namespace Meetups.Context
     {
         public MeetupsContext(DbContextOptions<MeetupsContext> options): base(options)
         {
-
+            
         }
-        DbSet<Event> Events { get; set; }
-        DbSet<Host> Host { get; set; }
-        DbSet<User> User { get; set; }
+        public DbSet<Event> Events { get; set; }
+        public DbSet<Host> Host { get; set; }
+        public DbSet<User> User { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
