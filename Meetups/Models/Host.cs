@@ -11,6 +11,6 @@ namespace Meetups.Models
         public string HostName { get; set; }
         public string EmailAddress { get; set; }
         public string PhoneNumber { get; set; }
-        public Events Event { get; set; }
+        public Event Event { get; set; }
     }
 }

@@ -13,9 +13,15 @@ namespace Meetups.Context
         {
 
         }
-
-        DbSet<Events> Events { get; set; }
+        DbSet<Event> Events { get; set; }
         DbSet<Host> Host { get; set; }
         DbSet<User> User { get; set; }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Event>().ToTable("Event");
+            modelBuilder.Entity<Host>().ToTable("Hosts");
+            modelBuilder.Entity<User>().ToTable("User");
+        }
     }
 }

@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace Meetups.Models
 {
-    public class Events
+    public class Event
     {
         public int Id { get; set; }
         public int HostId { get; set; }
